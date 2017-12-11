@@ -8,12 +8,12 @@ SET time_zone = "-05:00";
 /*!40101 SET NAMES utf8 */;
 
 -- -----------------------------------------------------------------
--- DATABASE: `users`
+-- DATABASE: `cee_users`
 -- -----------------------------------------------------------------
 
 -- Create database if it doesn't exist
-CREATE DATABASE IF NOT EXISTS `users`;
--- Use database so further changes occur in `users`
+CREATE DATABASE IF NOT EXISTS `cee_users`;
+-- Use database so further changes occur in `cee_users`
 USE `users`;
 
 -- Hold basic information on all users
@@ -45,7 +45,7 @@ ALTER TABLE `students` ADD UNIQUE KEY `id` (`id`);
 -- One day, we may add a `courses` or `schedule` column
 CREATE TABLE IF NOT EXISTS `faculty` (
   `id` int(9) NOT NULL,
-  `title` text CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT 'Professor',
+  `title` text CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `department` text CHARACTER SET utf8 COLLATE utf8_bin NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 -- Set `id` as a unique key
@@ -62,12 +62,12 @@ CREATE TABLE IF NOT EXISTS `staff` (
 ALTER TABLE `staff` ADD UNIQUE KEY `id` (`id`);
 
 -- -----------------------------------------------------------------
--- DATABASE: `groups`
+-- DATABASE: `cee_groups`
 -- -----------------------------------------------------------------
 
 -- Create database if it doesn't exist
-CREATE DATABASE IF NOT EXISTS `groups`;
--- Use database so further changes occur in `cardswipe`
+CREATE DATABASE IF NOT EXISTS `cee_groups`;
+-- Use database so further changes occur in `cee_groups`
 USE `groups`;
 
 -- Add information for all groups
@@ -101,8 +101,8 @@ ALTER TABLE `student_orgs` ADD UNIQUE KEY `id` (`id`);
 -- -----------------------------------------------------------------
 -- OTHER DATABASES
 -- -----------------------------------------------------------------
-CREATE DATABASE IF NOT EXISTS `cardswipe`;
-CREATE DATABASE IF NOT EXISTS `inventory`;
+CREATE DATABASE IF NOT EXISTS `cee_timesheets`;
+CREATE DATABASE IF NOT EXISTS `cee_inventory`;
 
 -- Miscellaneous settings
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
