@@ -14,7 +14,7 @@ SET time_zone = "-05:00";
 -- Create database if it doesn't exist
 CREATE DATABASE IF NOT EXISTS `cee_users`;
 -- Use database so further changes occur in `cee_users`
-USE `users`;
+USE `cee_users`;
 
 -- Hold basic information on all users
 -- Table structure for table `all_users`
@@ -68,7 +68,7 @@ ALTER TABLE `staff` ADD UNIQUE KEY `id` (`id`);
 -- Create database if it doesn't exist
 CREATE DATABASE IF NOT EXISTS `cee_groups`;
 -- Use database so further changes occur in `cee_groups`
-USE `groups`;
+USE `cee_groups`;
 
 -- Add information for all groups
 -- Table structure for table `all_groups`
