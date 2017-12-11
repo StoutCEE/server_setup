@@ -61,6 +61,24 @@ CREATE TABLE IF NOT EXISTS `staff` (
 -- Set `id` as a unique key
 ALTER TABLE `staff` ADD UNIQUE KEY `id` (`id`);
 
+-- Add specific information for admin users
+-- Table structure for table `admin_users`
+CREATE TABLE IF NOT EXISTS `admin_users` (
+  `id` int(9) NOT NULL,
+  `password` text CHARACTER SET utf8 COLLATE utf8_bin NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+-- Set `id` as a unique key
+ALTER TABLE `admin_users` ADD UNIQUE KEY `id` (`id`);
+
+-- Add categories (table names for specific user types)
+-- Table structure for table `categories`
+CREATE TABLE IF NOT EXISTS `categories` (
+  `category` text CHARACTER SET utf8 COLLATE utf8_bin NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+INSERT INTO `categories` (`category`) VALUES (`students`);
+INSERT INTO `categories` (`category`) VALUES (`faculty`);
+INSERT INTO `categories` (`category`) VALUES (`staff`);
+
 -- -----------------------------------------------------------------
 -- DATABASE: `cee_groups`
 -- -----------------------------------------------------------------
@@ -74,7 +92,8 @@ USE `cee_groups`;
 -- Table structure for table `all_groups`
 CREATE TABLE IF NOT EXISTS `all_groups` (
   `id` int(9) unsigned NOT NULL,
-  `name` text NOT NULL,
+  `title_short` text NOT NULL,
+  `title_long` text NOT NULL,
   `category` text NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 ALTER TABLE `all_groups` ADD UNIQUE KEY `id` (`id`);
@@ -83,7 +102,6 @@ ALTER TABLE `all_groups` ADD UNIQUE KEY `id` (`id`);
 -- Table structure for table `labs`
 CREATE TABLE IF NOT EXISTS `labs` (
   `id` int(9) unsigned NOT NULL,
-  `name` text NOT NULL,
   `location` text NOT NULL,
   `department` text NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
@@ -97,6 +115,13 @@ CREATE TABLE IF NOT EXISTS `student_orgs` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 ALTER TABLE `student_orgs` ADD UNIQUE KEY `id` (`id`);
 
+-- Add categories (table names for specific group types)
+-- Table structure for table `categories`
+CREATE TABLE IF NOT EXISTS `categories` (
+  `category` text CHARACTER SET utf8 COLLATE utf8_bin NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+INSERT INTO `categories` (`category`) VALUES (`labs`);
+INSERT INTO `categories` (`category`) VALUES (`student_orgs`);
 
 -- -----------------------------------------------------------------
 -- OTHER DATABASES
