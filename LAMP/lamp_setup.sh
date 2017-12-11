@@ -21,7 +21,7 @@ ufw allow in "Apache Full"
 apt-get update
 apt-get -y install mysql-server
 # Secure Installation Script - Interactive
-mysql_secure_installation
+# mysql_secure_installation
 
 # PHP Install
 # Installing PHP and dependencies
