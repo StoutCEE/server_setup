@@ -5,17 +5,23 @@ This repository contains the files for configuring a Linux webserver with LAMP s
  - Debian-based system
  - Internet connection
  - Root privileges
- 
-## Usage ##
-The scripts require root privileges:
+ - GitHub account (for cloning this repository)
+
+# Downloading Repository #
+First, the commands and scripts need to be run as root:
 ```
-sudo ./script-name.sh
+sudo su
+```
+As root user, copy the following commands into the terminal. 
+```
+apt-get update && apt-get upgrade
+apt-get -y install git
+cd / && git clone https://github.com/StoutCEE/server_setup/ ./cee_setup
+chmod u+x /cee_setup/setup.sh
+cd /cee_setup && ./setup.sh
 ```
 
-# LAMP Stack Setup #
-The LAMP folder contains a script to install and configure LAMP stack. The user must be present to set the MySQL password.
-
-## MySQL Configuration ##
+# MySQL Configuration #
 The LAMP folder also contains files for creating the MySQL databases. To import a database, open the terminal and type:
 ```
 mysql -u root -p
