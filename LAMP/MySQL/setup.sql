@@ -21,8 +21,6 @@ USE `cee_users`;
 CREATE TABLE IF NOT EXISTS `all_users` (
   `id` int(9) unsigned NOT NULL,
   `username` text NOT NULL,
-  `name` text NOT NULL,
-  `surname` text NOT NULL,
   `category` text NOT NULL,
   `admin_priv` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
@@ -34,8 +32,7 @@ ALTER TABLE `all_users` ADD UNIQUE KEY `id` (`id`);
 CREATE TABLE IF NOT EXISTS `students` (
   `id` int(9) NOT NULL,
   `classification` text CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-  `major` text CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-  `graduation` date NOT NULL
+  `major` text CHARACTER SET utf8 COLLATE utf8_bin NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 -- Set `id` as a unique key
 ALTER TABLE `students` ADD UNIQUE KEY `id` (`id`);
@@ -45,7 +42,6 @@ ALTER TABLE `students` ADD UNIQUE KEY `id` (`id`);
 -- One day, we may add a `courses` or `schedule` column
 CREATE TABLE IF NOT EXISTS `faculty` (
   `id` int(9) NOT NULL,
-  `title` text CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `department` text CHARACTER SET utf8 COLLATE utf8_bin NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 -- Set `id` as a unique key
@@ -55,7 +51,6 @@ ALTER TABLE `faculty` ADD UNIQUE KEY `id` (`id`);
 -- Table structure for table `staff`
 CREATE TABLE IF NOT EXISTS `staff` (
   `id` int(9) NOT NULL,
-  `title` text CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `department` text CHARACTER SET utf8 COLLATE utf8_bin NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 -- Set `id` as a unique key
@@ -65,19 +60,12 @@ ALTER TABLE `staff` ADD UNIQUE KEY `id` (`id`);
 -- Table structure for table `admin_users`
 CREATE TABLE IF NOT EXISTS `admin_users` (
   `id` int(9) NOT NULL,
-  `password` text CHARACTER SET utf8 COLLATE utf8_bin NOT NULL
+  `password` text CHARACTER SET utf8 COLLATE utf8_bin NOT NULL;
+  `privilege` int(4) DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 -- Set `id` as a unique key
 ALTER TABLE `admin_users` ADD UNIQUE KEY `id` (`id`);
 
--- Add categories (table names for specific user types)
--- Table structure for table `categories`
-CREATE TABLE IF NOT EXISTS `categories` (
-  `category` text CHARACTER SET utf8 COLLATE utf8_bin NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-INSERT INTO `categories` (`category`) VALUES (`students`);
-INSERT INTO `categories` (`category`) VALUES (`faculty`);
-INSERT INTO `categories` (`category`) VALUES (`staff`);
 
 -- -----------------------------------------------------------------
 -- DATABASE: `cee_groups`
@@ -91,7 +79,7 @@ USE `cee_groups`;
 -- Add information for all groups
 -- Table structure for table `all_groups`
 CREATE TABLE IF NOT EXISTS `all_groups` (
-  `id` int(9) unsigned NOT NULL,
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
   `title_short` text NOT NULL,
   `title_long` text NOT NULL,
   `category` text NOT NULL
@@ -101,7 +89,7 @@ ALTER TABLE `all_groups` ADD UNIQUE KEY `id` (`id`);
 -- Add information for labs
 -- Table structure for table `labs`
 CREATE TABLE IF NOT EXISTS `labs` (
-  `id` int(9) unsigned NOT NULL,
+  `id` int unsigned NOT NULL,
   `location` text NOT NULL,
   `department` text NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
@@ -110,24 +98,21 @@ ALTER TABLE `labs` ADD UNIQUE KEY `id` (`id`);
 -- Add information for student_orgs
 -- Table structure for table `student_orgs`
 CREATE TABLE IF NOT EXISTS `student_orgs` (
-  `id` int(9) unsigned NOT NULL,
-  `email` text NOT NULL
+  `id` int unsigned NOT NULL,
+  `email` text NOT NULL,
+  `orgsync` text NOT NULL,
+  `website` text
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 ALTER TABLE `student_orgs` ADD UNIQUE KEY `id` (`id`);
 
--- Add categories (table names for specific group types)
--- Table structure for table `categories`
-CREATE TABLE IF NOT EXISTS `categories` (
-  `category` text CHARACTER SET utf8 COLLATE utf8_bin NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-INSERT INTO `categories` (`category`) VALUES (`labs`);
-INSERT INTO `categories` (`category`) VALUES (`student_orgs`);
 
 -- -----------------------------------------------------------------
 -- OTHER DATABASES
 -- -----------------------------------------------------------------
 CREATE DATABASE IF NOT EXISTS `cee_timesheets`;
 CREATE DATABASE IF NOT EXISTS `cee_inventory`;
+CREATE DATABASE IF NOT EXISTS `cee_layouts`;
+CREATE DATABASE IF NOT EXISTS `cee_computers`;
 
 -- Miscellaneous settings
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
