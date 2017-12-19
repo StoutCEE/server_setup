@@ -16,9 +16,9 @@ As root user, copy the following commands into the terminal.
 ```
 apt-get update && apt-get upgrade
 apt-get -y install git
-cd / && git clone https://github.com/StoutCEE/server_setup/ ./cee_setup
-chmod u+x /cee_setup/setup.sh
-cd /cee_setup && ./setup.sh
+cd / && git clone https://github.com/StoutCEE/server_setup/ ./cee_server
+chmod u+x /cee_server/setup.sh
+cd /cee_server && ./setup.sh
 ```
 
 # MySQL Configuration #
