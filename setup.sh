@@ -17,3 +17,6 @@ apt-get -y install git
 
 ## INSTALL GNOME-DISK-UTILITY for creating system images ##
 apt-get -y install gnome-disk-utility
+
+## INSTALL UNZIP ##
+apt-get -y install unzip
